@@ -6,25 +6,24 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:WpfApp_HW3"
         mc:Ignorable="d"
-        Title="小畫家v2" Height="520" Width="800">
+        Title="小畫家v2" Height="530" Width="940">
 
     <DockPanel LastChildFill="False">
         <Menu Height="30" DockPanel.Dock="Top" Background="#FFF5BEBE">
-            <MenuItem Height="29" Header="檔案" VerticalAlignment="Center">
-                <MenuItem Header="新增畫布"/>
-                <MenuItem Header="開啟檔案"/>
+            <MenuItem Height="25" Header="檔案" VerticalAlignment="Center">
+                <MenuItem Header="儲存畫布" Click="SaveCanvas_Click"/>
             </MenuItem>
         </Menu>
         <ToolBarTray Height="40" DockPanel.Dock="Top">
-            <ToolBar Height="38" Width="550" Background="#FF65FF00">
+            <ToolBar Height="38" Width="550" Background="Chartreuse">
                 <Label Content="筆刷色彩" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
-                <xctk:ColorPicker x:Name="strokeColorPicker" Width="100" SelectedColorChanged="strokeColorPicker_SelectedColorChanged"/>
+                <xctk:ColorPicker x:Name="strokeColorPicker" Width="100" SelectedColorChanged="StrokeColorPicker_SelectedColorChanged"/>
                 <Label Content="填滿色彩" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
-                <xctk:ColorPicker x:Name="fillColorPicker" Width="100" SelectedColorChanged="fillColorPicker_SelectedColorChanged"/>
-                <Slider x:Name="strokeThicknessSlider" Width="120" VerticalAlignment="Center" Value="1" Minimum="1" IsSnapToTickEnabled="True" Margin="20,0,0,0" ValueChanged="strokeThicknessSlider_ValueChanged" />
-                <Label Width="40" Margin="10,0,0,0" Content="{Binding Value, ElementName=strokeThicknessSlider}" FontSize="14" Foreground="DeepSkyBlue" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <xctk:ColorPicker x:Name="fillColorPicker" Width="100" SelectedColorChanged="FillColorPicker_SelectedColorChanged"/>
+                <Slider x:Name="strokeThicknessSlider" Width="120" VerticalAlignment="Center" Value="1" Minimum="1" IsSnapToTickEnabled="True" Margin="20,0,0,0" ValueChanged="StrokeThicknessSlider_ValueChanged" />
+                <Label Width="40" Margin="10,0,0,0" Content="{Binding Value, ElementName=strokeThicknessSlider}" FontSize="14" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
             </ToolBar>
-            <ToolBar Height="38" Background="#FFCAE0F9" Margin="0,0,-10,0">
+            <ToolBar Height="38" Background="#FFCAE0F9" Margin="0,0,-10,0" Width="300">
                 <RadioButton Width="38" Height="38" Click="ShapeButton_Click" Tag="line">
                     <Image Height="30" Width="30" Source="C:\Users\acer\Desktop\視窗程式設計\WpfApp_HW3\WpfApp_HW3\line.png"/>
                 </RadioButton>
@@ -46,13 +45,16 @@
                 </RadioButton>
             </ToolBar>
         </ToolBarTray>
-        <Canvas x:Name="myCanvas" Background="#FFEAECB4" DockPanel.Dock="Top" Height="406" MouseEnter="myCanvas_MouseEnter" MouseLeftButtonDown="myCanvas_MouseLeftButtonDown" MouseMove="myCanvas_MouseMove" MouseLeftButtonUp="myCanvas_MouseLeftButtonUp"/>
+        <Canvas x:Name="myCanvas" Background="#FFF5F6D7" DockPanel.Dock="Top" Height="394" MouseEnter="MyCanvas_MouseEnter" MouseLeftButtonDown="MyCanvas_MouseLeftButtonDown" MouseMove="MyCanvas_MouseMove" MouseLeftButtonUp="MyCanvas_MouseLeftButtonUp"/>
         <StatusBar Height="35" DockPanel.Dock="Bottom" Background="LightGray">
             <StatusBarItem>
-                <Label x:Name="statusLabel" Content="Ready" FontSize="14"/>
+                <Label x:Name="statusAction" Content="Ready" FontSize="14" Margin="30,0,0,0"/>
             </StatusBarItem>
             <StatusBarItem>
                 <Label x:Name="statusPoint" Content="(0, 0) - (0, 0)" FontSize="14"/>
+            </StatusBarItem>
+            <StatusBarItem Width="405">
+                <Label x:Name="statusShape" Content="" FontSize="14"/>
             </StatusBarItem>
         </StatusBar>
     </DockPanel>
